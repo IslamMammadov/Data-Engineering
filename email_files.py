@@ -2,7 +2,7 @@ import win32com.client
 import os
 from datetime import datetime
 
-def mnp_file_path(subject_keyword, save_folder : str = None):
+def email_file_path(subject_keyword, save_folder : str = None):
     outlook =  win32com.client.Dispatch("Outlook.Application").GetNamespace('MAPI')
     inbox = outlook.GetDefaultFolder(6) # 6 corresponds to the inbox
     last_email =  None
@@ -35,5 +35,5 @@ def mnp_file_path(subject_keyword, save_folder : str = None):
 
 
 folder = r'Z:\DWH Load\Islam\src'
-result = mnp_file_path('Daily VAS%',folder)
+result = email_file_path('Daily VAS%',folder)
 print(result)
