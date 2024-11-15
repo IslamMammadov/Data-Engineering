@@ -6,7 +6,7 @@ def email_file_path(subject_keyword, save_folder : str = None):
     outlook =  win32com.client.Dispatch("Outlook.Application").GetNamespace('MAPI')
     inbox = outlook.GetDefaultFolder(6) # 6 corresponds to the inbox
     last_email =  None
-    file_path =None
+    file_path = None
     filter_date = datetime.combine(datetime.today(), datetime.min.time()).strftime("%Y-%m-%d %H:%M:%S")
 
     emails = inbox.Items.Restrict(f"@SQL=""http://schemas.microsoft.com/mapi/proptag/0x0037001f"" LIKE '%s' AND " 
