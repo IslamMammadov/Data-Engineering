@@ -9,12 +9,12 @@ def email_file_path(subject_keyword, save_folder : str = None):
     file_path =None
     filter_date = datetime.combine(datetime.today(), datetime.min.time()).strftime("%Y-%m-%d %H:%M:%S")
 
-    messages = inbox.Items.Restrict(f"@SQL=""http://schemas.microsoft.com/mapi/proptag/0x0037001f"" LIKE '%s' AND " 
+    emails = inbox.Items.Restrict(f"@SQL=""http://schemas.microsoft.com/mapi/proptag/0x0037001f"" LIKE '%s' AND " 
                                     f"\"urn:schemas:httpmail:datereceived\" > '{filter_date}'" % subject_keyword)
-    for item in messages:
+    for email in emails:
         try:
-            if last_email is None or item.ReceivedTime > last_email.ReceivedTime:
-                last_email = item
+            if last_email is None or email.ReceivedTime > last_email.ReceivedTime:
+                last_email = email
         except AttributeError as e:
             print(f'Error>>processing an email: {e}')
             continue
